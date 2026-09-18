@@ -16,8 +16,4 @@
     <ProjectReference Include="..\MegaMart.Catalog.Infrastructure\MegaMart.Catalog.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Middlewares\" />
-  </ItemGroup>
-
 </Project>

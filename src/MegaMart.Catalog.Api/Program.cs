@@ -1,4 +1,5 @@
 using FluentValidation;
+using MegaMart.Catalog.Api.Middlewares;
 using MegaMart.Catalog.Application.Behaviors;
 using MegaMart.Catalog.Application.Contracts;
 using MegaMart.Catalog.Infrastructure.Data;
@@ -26,8 +27,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
 var app = builder.Build();
-
+app.UseExceptionHandler();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
