@@ -10,4 +10,10 @@
     <ProjectReference Include="..\MegaMart.Catalog.Domain\MegaMart.Catalog.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+    <Folder Include="Features\" />
+    <Folder Include="DTOs\" />
+  </ItemGroup>
+
 </Project>
