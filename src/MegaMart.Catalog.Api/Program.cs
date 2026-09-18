@@ -1,3 +1,5 @@
+using FluentValidation;
+using MegaMart.Catalog.Application.Behaviors;
 using MegaMart.Catalog.Application.Contracts;
 using MegaMart.Catalog.Infrastructure.Data;
 using MegaMart.Catalog.Infrastructure.Repositories;
@@ -9,8 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
 // تنظیمات MongoDB
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
+builder.Services.AddValidatorsFromAssembly(typeof(MegaMart.Catalog.Application.Features.Products.Commands.CreateProductCommand).Assembly);
+// 2. تغییر نحوه ثبت MediatR برای اضافه کردن Behavior
 builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(MegaMart.Catalog.Application.Features.Products.Commands.CreateProductCommand).Assembly));
+{
+    cfg.RegisterServicesFromAssembly(typeof(MegaMart.Catalog.Application.Features.Products.Commands.CreateProductCommand).Assembly);
+    // اضافه کردن دروازه‌بان اعتبارسنجی به پایپ‌لاین
+    cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+});
 // ثبت Repository
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
