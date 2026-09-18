@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MegaMart.Catalog.Api/MegaMart.Catalog.Api.csproj" />
+  <Project Path="MegaMart.Catalog.Application/MegaMart.Catalog.Application.csproj" />
+  <Project Path="MegaMart.Catalog.Domain/MegaMart.Catalog.Domain.csproj" />
+  <Project Path="MegaMart.Catalog.Infrastructure/MegaMart.Catalog.Infrastructure.csproj" />
+</Solution>
